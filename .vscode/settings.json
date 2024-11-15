@@ -1,0 +1,7 @@
+{
+  "rubyLsp.bundleGemfile": "../../Gemfile",
+  "rubyLsp.formatter": "auto",
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "auto"
+  }
+}

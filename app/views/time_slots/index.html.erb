@@ -1,0 +1,9 @@
+<% provide(:title, 'Time Slots') %>
+<h1 class="text-6xl font-bold text-center py-8">Time Slots</h1>
+<div class="text-center">
+  <%= link_to "Add Timeslot", new_time_slot_path, class: "bg-emerald-900 text-white font-bold px-4 py-2 rounded" %>
+  <%= paginate @time_slots %>
+</div>
+<ul class="flex flex-col gap-4 px-24">
+  <%= render partial: 'time_slot', collection: @time_slots %>
+</ul>

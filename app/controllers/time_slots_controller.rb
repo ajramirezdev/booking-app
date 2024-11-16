@@ -1,6 +1,10 @@
 class TimeSlotsController < ApplicationController
   before_action :set_time_slot, only: [ :show, :edit, :update, :destroy ]
 
+  def index
+    @time_slots = TimeSlot.all.page(params[:page]).per(10)
+  end
+
   def show
   end
 
@@ -12,7 +16,7 @@ class TimeSlotsController < ApplicationController
     @time_slot = TimeSlot.new(time_slot_params)
 
     if @time_slot.save
-      redirect_to new_time_slot_path, notice: "TimeSlot was successfully created."
+      redirect_to time_slots_path, notice: "TimeSlot was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -23,7 +27,7 @@ class TimeSlotsController < ApplicationController
 
   def update
     if @time_slot.update(time_slot_params)
-      redirect_to static_pages_home_path, notice: "Time Slot was successfully updated."
+      redirect_to time_slots_path, notice: "Time Slot was successfully updated."
     else
       render :edit
     end
@@ -31,13 +35,13 @@ class TimeSlotsController < ApplicationController
 
   def destroy
     @time_slot.destroy
-    redirect_to root_path, notice: "Time Slot was successfully deleted."
+    redirect_to time_slots_path, notice: "Time Slot was successfully deleted."
   end
 
   private
 
   def time_slot_params
-    params.require(:time_slot).permit(:date, :start_time, :end_time, :max_tables)
+    params.require(:time_slot).permit(:start_time, :end_time, :max_tables)
   end
 
   def set_time_slot

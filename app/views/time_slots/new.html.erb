@@ -4,8 +4,6 @@
     <h1 class="text-4xl font-bold mb-4">Create a TimeSlot</h1>
     <%= form_with(model: @time_slot, local: true, html: { class: "flex flex-col gap-2 min-w-96" }) do |form| %>
       <%= render 'shared/error_messages', object: form.object %>
-      <%= form.label :date %>
-      <%= form.date_field :date, class: "rounded w-full" %>
       <div class="flex gap-4">
         <div class="w-1/2">
           <%= form.label :start_time %>

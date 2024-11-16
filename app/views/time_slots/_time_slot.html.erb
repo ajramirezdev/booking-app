@@ -1,6 +1,5 @@
 <div class="flex justify-between items-center px-8 py-4 border-b">
   <div class="flex gap-4">
-    <p><strong>Date:</strong> <%= time_slot.date %></p>
     <p><strong>Start Time:</strong> <%= time_slot.start_time.strftime("%H:%M") %></p>
     <p><strong>End Time:</strong> <%= time_slot.end_time.strftime("%H:%M") %></p>
     <p><strong>Max Tables:</strong> <%= time_slot.max_tables %></p>

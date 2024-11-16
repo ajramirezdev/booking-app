@@ -4,6 +4,7 @@
     <ul class="flex gap-8">
       <% if logged_in? %>
         <ul class="flex gap-4">
+          <li><%= link_to "Timeslots", time_slots_path %></li>
           <li><%= link_to "Profile", current_user %></li>
           <li><%= link_to "Log Out", logout_path, method: :delete %></li>
         </ul>

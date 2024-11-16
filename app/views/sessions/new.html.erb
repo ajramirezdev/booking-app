@@ -1,0 +1,16 @@
+<% provide(:title, "Log In") %>
+<div class="flex flex-col items-center justify-center h-screen py-12">
+  <h1 class="font-bold text-4xl mb-4">Log In</h1>
+  <%= form_for(:session, url: login_path, html: {class: "flex flex-col gap-2 min-w-96", data: { turbo: false }}) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "rounded w-full" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "rounded w-full" %>
+    <%= f.label :remember_me, class: "checkbox inline" do %>
+      <%= f.check_box :remember_me %>
+      <span>Remember me on this computer</span>
+    <% end %>
+    <%= f.submit "Submit", class: "bg-blue-500 rounded py-2.5 text-white font-bold" %>
+    <div>New user? <%= link_to "Sign up now!", signup_path, class: "text-blue-500 underline" %></div>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+ <%= form_for(@user, html: {class: "flex flex-col gap-2 min-w-96", data: { turbo: false }}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "rounded w-full" %>
+  <%= f.label :email %>
+  <%= f.email_field :email, class: "rounded w-full" %>
+  <%= f.label :password %>
+  <%= f.password_field :password, class: "rounded w-full" %>
+  <%= f.label :password_confirmation, "Confirmation" %>
+  <%= f.password_field :password_confirmation, class: "rounded w-full" %>
+  <%= f.submit yield(:button_text), class: "bg-blue-500 rounded py-2.5 text-white font-bold" %>
+  <div>Already have an account? <%= link_to "Log in now!", login_path, class: "text-blue-500 underline" %></div>
+<% end %>

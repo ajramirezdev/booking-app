@@ -1,5 +1,5 @@
 <% provide(:title, "Log In") %>
-<div class="flex flex-col items-center justify-center h-screen py-12">
+<div class="flex flex-col items-center justify-center py-12" style="height: calc(100vh - 64px);">
   <h1 class="font-bold text-4xl mb-4">Log In</h1>
   <%= form_for(:session, url: login_path, html: {class: "flex flex-col gap-2 min-w-96", data: { turbo: false }}) do |f| %>
     <%= f.label :email %>
@@ -11,6 +11,6 @@
       <span>Remember me on this computer</span>
     <% end %>
     <%= f.submit "Submit", class: "bg-blue-500 rounded py-2.5 text-white font-bold" %>
-    <div>New user? <%= link_to "Sign up now!", signup_path, class: "text-blue-500 underline" %></div>
+    <div>New user? <%= link_to "Sign up now!", signup_path, class: "text-emerald-900 underline" %></div>
   <% end %>
 </div>

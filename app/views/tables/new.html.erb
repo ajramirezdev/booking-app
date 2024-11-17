@@ -1,0 +1,14 @@
+<% provide(:title, "Add Table") %>
+<div class="flex justify-center items-center" style="height: calc(100vh - 64px);">
+  <div>
+    <h1 class="text-4xl font-bold mb-4">Create a Table</h1>
+    <%= form_with(model: @table, local: true, html: { class: "flex flex-col gap-2 min-w-96" }) do |form| %>
+      <%= render 'shared/error_messages', object: form.object %>
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "rounded w-full" %>
+      <%= form.label :max_capacity %>
+      <%= form.number_field :max_capacity , min: 0, class: "rounded w-full" %>
+      <%= form.submit "Create TimeSlot", class: "bg-emerald-900 rounded py-2.5 text-white font-bold" %>
+    <% end %>
+  </div>
+</div>

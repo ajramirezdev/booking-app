@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_16_115047) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_16_132006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.bigint "table_id", null: false
+    t.bigint "time_slot_id", null: false
+    t.date "date", null: false
+    t.boolean "available", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["table_id"], name: "index_availabilities_on_table_id"
+    t.index ["time_slot_id"], name: "index_availabilities_on_time_slot_id"
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.string "name"
+    t.integer "max_capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tables_on_name", unique: true
+  end
 
   create_table "time_slots", force: :cascade do |t|
     t.time "start_time", null: false
@@ -32,4 +51,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_115047) do
     t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+
+  add_foreign_key "availabilities", "tables"
+  add_foreign_key "availabilities", "time_slots"
 end

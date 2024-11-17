@@ -1,0 +1,16 @@
+<h1>Edit Table</h1>
+<%= form_with(model: @table, local: true) do |form| %>
+  <%= render 'shared/error_messages', object: form.object %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "rounded w-full" %>
+  </div>
+  <div class="field">
+    <%= form.label :max_capacity %>
+    <%= form.number_field :max_capacity , min: 0, class: "rounded w-full" %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Update Table' %>
+  </div>
+<% end %>
+<%= link_to 'Back to Tables', tables_path %>

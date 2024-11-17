@@ -1,0 +1,9 @@
+<% provide(:title, 'Tables') %>
+<h1 class="text-6xl font-bold text-center py-8">Tables</h1>
+<div class="text-center">
+  <%= link_to "Add Tables", new_table_path, class: "bg-emerald-900 text-white font-bold px-4 py-2 rounded" %>
+  <%= paginate @tables %>
+</div>
+<ul class="flex flex-col gap-4 px-24">
+  <%= render partial: 'table', collection: @tables %>
+</ul>

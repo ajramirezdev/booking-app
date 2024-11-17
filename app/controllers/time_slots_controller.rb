@@ -1,8 +1,10 @@
 class TimeSlotsController < ApplicationController
+  before_action :logged_in_user
+  before_action :admin_user
   before_action :set_time_slot, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @time_slots = TimeSlot.all.page(params[:page]).per(10)
+    @time_slots = TimeSlot.all.page(params[:page]).per(5)
   end
 
   def show
@@ -46,5 +48,13 @@ class TimeSlotsController < ApplicationController
 
   def set_time_slot
     @time_slot = TimeSlot.find(params[:id])
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+
+  def logged_in_user
+    redirect_to login_url unless logged_in?
   end
 end

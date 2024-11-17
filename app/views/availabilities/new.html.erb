@@ -1,0 +1,23 @@
+<% provide(:title, "Add Availability") %>
+<div class="flex justify-center items-center" style="height: calc(100vh - 64px);">
+  <div>
+    <h1 class="text-4xl font-bold mb-4">Create Availability</h1>
+    <%= form_with(model: @availability, local: true, html: { class: "flex flex-col gap-2 min-w-96" }) do |form| %>
+      <%= render 'shared/error_messages', object: form.object %>
+      <%= form.label :table_id, "Select Tables" %>
+      <div class="flex flex-col gap-2 h-[120px] overflow-y-auto">
+        <% Table.all.each do |table| %>
+          <div class="ml-4">
+            <%= check_box_tag "table_ids[]", table.id, false, id: "table_#{table.id}" %>
+            <%= label_tag "table_#{table.id}", "#{table.name} (Max Capacity: #{table.max_capacity})" %>
+          </div>
+        <% end %>
+      </div>
+      <%= form.label :time_slot_id, "Select Time Slot" %>
+      <%= form.collection_select :time_slot_id, TimeSlot.all, :id, ->(ts) { "#{ts.start_time.strftime('%I:%M %p')} - #{ts.end_time.strftime('%I:%M %p')}" }, prompt: "Choose a time slot" %>
+      <%= form.label :date %>
+      <%= form.date_field :date, class: "w-full" %>
+      <%= form.submit "Create Availability", class: "bg-emerald-900 rounded py-2.5 text-white font-bold" %>
+    <% end %>
+  </div>
+</div>

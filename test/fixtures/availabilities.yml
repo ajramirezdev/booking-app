@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  table: one
+  time_slot: one
+  date: 2024-11-16
+  available: false
+
+two:
+  table: two
+  time_slot: two
+  date: 2024-11-16
+  available: false

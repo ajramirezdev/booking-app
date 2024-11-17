@@ -1,4 +1,5 @@
 class TimeSlot < ApplicationRecord
+  has_many :reservations
   # Validations
   validates :start_time, :end_time, presence: true
   validates :max_tables, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -18,5 +19,9 @@ class TimeSlot < ApplicationRecord
     unless time_difference == 3600
       errors.add(:end_time, "must be exactly 1 hour after the start time")
     end
+  end
+
+  def start_time_with_end_time
+    "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}"
   end
 end

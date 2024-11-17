@@ -1,0 +1,27 @@
+<% provide(:title, "Make Reservation") %>
+<div class="flex justify-center items-center" style="height: calc(100vh - 64px);">
+  <div>
+    <h1 class="text-4xl font-bold mb-4">Make Reservation</h1>
+    <%= form_with(model: @reservation, local: true, html: { class: "flex flex-col gap-2 min-w-96" }) do |form| %>
+      <div>Name</div>
+      <div class="border border-black p-[8px]"><%= current_user.name %></div>
+      <div>Email</div>
+      <div class="border border-black p-[8px]"><%= current_user.email %></div>
+      <div>Table</div>
+      <div class="border border-black p-[8px]"><%= @table.name %> (Capacity: <%= @table.max_capacity %>)</div>
+      <div>Time Slot</div>
+      <div class="border border-black p-[8px]"><%= @time_slot.start_time.strftime('%I:%M %p') %> - <%= @time_slot.end_time.strftime('%I:%M %p') %></div>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.hidden_field :table_id, value: @table_id %>
+      <%= form.hidden_field :time_slot_id, value: @time_slot_id %>
+      <%= form.hidden_field :availability_id, value: @availability_id %>
+      <%= form.hidden_field :date, value: @date %>
+      <%= form.label :number_of_people %>
+      <%= form.number_field :number_of_people, in: 1..@table.max_capacity, step: 1, min: 1, max: @table.max_capacity %>
+      <%= form.hidden_field :status, value: "confirmed" %>
+      <div class="actions">
+        <%= form.submit "Submit", class: "bg-emerald-900 rounded py-2.5 text-white font-bold w-full" %>
+      </div>
+    <% end %>
+  </div>
+</div>

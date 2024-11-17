@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "book/show"
   get "users/new"
   get "static_pages/home"
   get "sessions/new"
@@ -6,10 +7,19 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   post "/login", to: "sessions#create"
   get "/signup", to: "users#new"
+  get "/my_reservations", to: "reservations#my_reservations"
+
+  get "book/:date", to: "book#show", as: "book_date"
 
   resources :users
   resources :time_slots
   resources :tables
+  resources :reservations do
+    member do
+      patch :cancel
+    end
+  end
+
   resources :availabilities, only: [ :index, :create, :destroy, :new ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

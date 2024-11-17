@@ -3,7 +3,7 @@ class AvailabilitiesController < ApplicationController
   before_action :admin_user
 
   def index
-    @availabilities = Availability.includes(:table, :time_slot).all.page(params[:page]).per(5)
+    @availabilities = Availability.includes(:table, :time_slot).all.order("id DESC").page(params[:page]).per(5)
   end
 
   def new

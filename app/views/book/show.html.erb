@@ -1,0 +1,21 @@
+<h1>Available Time Slots for <%= @date.strftime('%A, %B %d, %Y') %></h1>
+<% if @availabilities.any? %>
+  <% @time_slots.each do |time_slot| %>
+    <div class="mt-4 p-4 border rounded bg-gray-100">
+      <h2>
+        <%= time_slot.start_time.strftime('%I:%M %p') %> - <%= time_slot.end_time.strftime('%I:%M %p') %>
+      </h2>
+      Available Tables:
+      <ul>
+        <% @availabilities.select { |a| a.time_slot == time_slot }.each do |availability| %>
+          <li>
+            <%= availability.table.name %> (Max Capacity: <%= availability.table.max_capacity %>)
+            <%= link_to "Reserve", new_reservation_path(date: @date, time_slot_id: time_slot.id, table_id: availability.table.id, availability_id: availability.id), class: "text-blue-500 underline" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% else %>
+  <p>No availabilities found for this date.</p>
+<% end %>

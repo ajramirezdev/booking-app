@@ -1,0 +1,7 @@
+<h1>Reservation Details</h1>
+<p><strong>Reservation Date:</strong> <%= @reservation.date.strftime('%A, %B %d, %Y') %></p>
+<p><strong>Time Slot:</strong> <%= @time_slot.start_time.strftime('%I:%M %p') %> - <%= @time_slot.end_time.strftime('%I:%M %p') %></p>
+<p><strong>Table:</strong> <%= @table.name %></p>
+<p><strong>Status:</strong> <%= @reservation.status %></p>
+<!-- Optional: Show any special requests or notes -->
+<%= link_to 'Back to Reservations', my_reservations_path, class: 'btn btn-secondary' %>

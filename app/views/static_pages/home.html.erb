@@ -1,4 +1,13 @@
 <% provide(:title, "Home") %>
-<div class="flex flex-col items-center mt-12 px-20">
-  hi
+<div class="container mt-5 text-center">
+  <%= month_calendar(events: @availabilities, attribute: :date) do |date, availabilities| %>
+    <div>
+      <%= date %>
+      <% if availabilities.any? %>
+        <div><%= link_to "Check Availability", book_date_path(date: date), class: "text-blue-500 underline" %></div>
+      <% else %>
+        <p class="text-gray-500">No availabilities for this date.</p>
+      <% end %>
+    </div>
+  <% end %>
 </div>

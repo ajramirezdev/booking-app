@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_16_132006) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_17_092552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,6 +23,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_132006) do
     t.datetime "updated_at", null: false
     t.index ["table_id"], name: "index_availabilities_on_table_id"
     t.index ["time_slot_id"], name: "index_availabilities_on_time_slot_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "table_id", null: false
+    t.bigint "time_slot_id", null: false
+    t.bigint "availability_id", null: false
+    t.date "date"
+    t.integer "number_of_people"
+    t.string "status", default: "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["availability_id"], name: "index_reservations_on_availability_id"
+    t.index ["table_id"], name: "index_reservations_on_table_id"
+    t.index ["time_slot_id"], name: "index_reservations_on_time_slot_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "tables", force: :cascade do |t|
@@ -54,4 +70,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_132006) do
 
   add_foreign_key "availabilities", "tables"
   add_foreign_key "availabilities", "time_slots"
+  add_foreign_key "reservations", "availabilities"
+  add_foreign_key "reservations", "tables"
+  add_foreign_key "reservations", "time_slots"
+  add_foreign_key "reservations", "users"
 end

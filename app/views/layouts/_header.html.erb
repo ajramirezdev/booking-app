@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center px-12 py-4 bg-emerald-950 text-white sticky top-0">
+<header class="flex justify-between items-center px-12 py-4 bg-emerald-950 text-white sticky top-0 z-50">
   <%= link_to "Booking App", root_path, id: "logo", :class => "uppercase tracking-[-1px] text-white font-bold text-2xl" %>
   <nav>
     <ul class="flex gap-8">
@@ -13,7 +13,6 @@
           <% if !current_user.admin? %>
             <li><%= link_to 'My Reservations', my_reservations_path %></li>
           <% end %>
-          <li><%= link_to "Profile", current_user %></li>
           <li><%= link_to "Log Out", logout_path, method: :delete %></li>
         </ul>
       <% else %>

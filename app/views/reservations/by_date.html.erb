@@ -1,0 +1,8 @@
+<% provide(:title, 'Reservations') %>
+<h1 class="text-6xl font-bold text-center py-8">Reservations for <%= @date %></h1>
+<div class="text-center">
+  <%= paginate @reservations %>
+</div>
+<ul class="flex flex-col gap-4 px-24">
+  <%= render partial: 'reservation', collection: @reservations %>
+</ul>

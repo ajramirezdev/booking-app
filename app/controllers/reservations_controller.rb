@@ -92,10 +92,16 @@ class ReservationsController < ApplicationController
         availability.update(available: true)
       end
 
-      redirect_to @reservation, notice: "Reservation was successfully cancelled."
+      redirect_to my_reservations_path, notice: "Reservation was successfully cancelled."
     else
       redirect_to my_reservations_path, alert: "There was an error cancelling your reservation."
     end
+  end
+
+  def by_date
+    @date = params[:date]
+    @reservations = Reservation.includes(:table, :time_slot, :user)
+                               .where(date: @date).page(params[:page]).per(5)
   end
 
   private

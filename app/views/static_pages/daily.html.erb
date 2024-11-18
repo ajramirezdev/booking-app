@@ -1,0 +1,49 @@
+<% provide(:title, "Daily") %>
+<div class=" flex flex-col items-center justify-center w-full mt-5 text-center">
+  <% if current_user&.admin? %>
+    <%= calendar(number_of_days: 1, events: @reservations, attribute: :date) do |date, reservations| %>
+      <div>
+        <%= date %>
+        <% if reservations.any? %>
+          <div class="text-center my-4">
+            <%= paginate @reservations_today %>
+          </div>
+          <ul class="flex flex-col gap-4 px-24">
+            <%= render partial: 'reservations/reservation', collection: @reservations_today %>
+          </ul>
+        <% else %>
+          <p class="text-gray-500">No reservations for this date.</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= calendar(number_of_days: 1, events: @availabilities, attribute: :date) do |date, availabilities| %>
+      <div>
+        <%= date %>
+        <% if availabilities.any? %>
+          <div class="grid grid-cols-3 gap-3">
+            <% @time_slots.each do |time_slot| %>
+              <div class="mt-4 p-4 border rounded bg-gray-100 ">
+                <div>Time Slot:</div>
+                <h2 class="text-3xl font-bold">
+                  <%= time_slot.start_time.strftime('%I:%M %p') %> - <%= time_slot.end_time.strftime('%I:%M %p') %>
+                </h2>
+                Available Tables:
+                <ul class="font-bold ml-4 h-[192px] overflow-y-auto">
+                  <% @availabilities_today.select { |a| a.time_slot == time_slot }.each do |availability| %>
+                    <li class="py-1 flex justify-between">
+                      <div><%= availability.table.name %> (Max Capacity: <%= availability.table.max_capacity %>)</div>
+                      <div><%= link_to "Reserve", new_reservation_path(date: @date, time_slot_id: time_slot.id, table_id: availability.table.id, availability_id: availability.id), class: "bg-emerald-900 font-normal text-white px-2 py-1 rounded text-sm" %></div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-gray-500">No availabilities for this date.</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   get "users/new"
   get "static_pages/home"
   get "sessions/new"
+  get "reservations/new"
   get "/login", to: "sessions#new"
   get "/logout", to: "sessions#destroy"
   post "/login", to: "sessions#create"
   get "/signup", to: "users#new"
   get "/my_reservations", to: "reservations#my_reservations"
+  get "/reservations/by_date", to: "reservations#by_date", as: "reservations_by_date"
+  get "/weekly", to: "static_pages#weekly"
+  get "/daily", to: "static_pages#daily"
 
   get "book/:date", to: "book#show", as: "book_date"
 

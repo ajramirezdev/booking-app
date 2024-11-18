@@ -1,7 +1,10 @@
-<h1>Reservation Details</h1>
-<p><strong>Reservation Date:</strong> <%= @reservation.date.strftime('%A, %B %d, %Y') %></p>
-<p><strong>Time Slot:</strong> <%= @time_slot.start_time.strftime('%I:%M %p') %> - <%= @time_slot.end_time.strftime('%I:%M %p') %></p>
-<p><strong>Table:</strong> <%= @table.name %></p>
-<p><strong>Status:</strong> <%= @reservation.status %></p>
-<!-- Optional: Show any special requests or notes -->
-<%= link_to 'Back to Reservations', my_reservations_path, class: 'btn btn-secondary' %>
+<div class="max-w-screen-xl mx-auto mt-12 flex flex-col gap-4 items-start">
+  <h1 class="text-5xl font-bold">Reservation Details</h1>
+  <p><strong>Reservation Date:</strong> <%= @reservation.date.strftime('%A, %B %d, %Y') %></p>
+  <p><strong>Time Slot:</strong> <%= @time_slot.start_time.strftime('%I:%M %p') %> - <%= @time_slot.end_time.strftime('%I:%M %p') %></p>
+  <p><strong>Table:</strong> <%= @table.name %></p>
+  <p><strong>Table Capacity:</strong> <%= @table.max_capacity %></p>
+  <p class="capitalize"><strong>Status:</strong> <span class="<%= @reservation.status == 'confirmed' ? 'bg-emerald-500' : 'bg-rose-500' %> py-1 px-2 rounded-sm font-bold text-white"><%= @reservation.status %></span></p>
+  <!-- Optional: Show any special requests or notes -->
+  <%= link_to 'Back to Reservations', my_reservations_path, class: 'bg-gray-400 px-2 py-1 rounded-sm font-bold' %>
+</div>

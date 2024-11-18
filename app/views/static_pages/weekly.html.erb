@@ -1,7 +1,7 @@
-<% provide(:title, "Home") %>
+<% provide(:title, "Weekly") %>
 <div class=" flex flex-col items-center justify-center w-full mt-5 text-center">
   <% if current_user&.admin? %>
-    <%= month_calendar(events: @reservations, attribute: :date) do |date, reservations| %>
+    <%= week_calendar(number_of_weeks: 1, events: @reservations, attribute: :date) do |date, reservations| %>
       <div>
         <%= date %>
         <% if reservations.any? %>
@@ -12,7 +12,7 @@
       </div>
     <% end %>
   <% else %>
-    <%= month_calendar(events: @availabilities, attribute: :date) do |date, availabilities| %>
+    <%= week_calendar(number_of_weeks: 1, events: @availabilities, attribute: :date) do |date, availabilities| %>
       <div>
         <%= date %>
         <% if availabilities.any? %>

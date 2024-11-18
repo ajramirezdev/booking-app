@@ -8,3 +8,71 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ 
+.simple-calendar {
+  margin: 0 6rem;
+}
+
+.simple-calendar th {
+  border: 1px solid black;
+}
+
+.simple-calendar nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.simple-calendar nav a {
+  background-color: #064e3b;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+}
+
+.day {
+  border: 1px solid black;
+  width: 200px;
+  height: 150px;
+}
+
+.day p {
+  font-size: 12px;
+}
+
+.wday-0 {}
+.wday-1 {}
+.wday-2 {}
+.wday-3 {}
+.wday-4 {}
+.wday-5 {}
+.wday-6 {}
+
+.today {
+  
+}
+.past {
+  
+}
+.future {
+  
+}
+
+.start-date {}
+
+.prev-month {
+  background-color: #e5e7eb;
+}
+.next-month {
+  background-color: #e5e7eb;
+}
+.current-month {}
+
+.has-events {}
+
+.calendar-title {
+  font-size: 3rem;
+  font-weight: 900;
+}

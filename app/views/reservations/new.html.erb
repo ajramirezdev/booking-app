@@ -20,7 +20,7 @@
       <%= form.number_field :number_of_people, in: 1..@table.max_capacity, step: 1, min: 1, max: @table.max_capacity %>
       <%= form.hidden_field :status, value: "confirmed" %>
       <div class="actions">
-        <%= form.submit "Submit", class: "bg-emerald-900 rounded py-2.5 text-white font-bold w-full" %>
+        <%= form.submit "Submit", class: "bg-emerald-900 rounded py-2.5 text-white font-bold w-full", data: { confirm: "Are you sure you want to make this reservation?", turbo_confirm: "Are you sure you want to make this reservation?" } %>
       </div>
     <% end %>
   </div>

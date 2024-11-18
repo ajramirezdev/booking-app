@@ -11,6 +11,8 @@
       <div class="border border-black p-[8px]"><%= @table.name %> (Capacity: <%= @table.max_capacity %>)</div>
       <div>Time Slot</div>
       <div class="border border-black p-[8px]"><%= @time_slot.start_time.strftime('%I:%M %p') %> - <%= @time_slot.end_time.strftime('%I:%M %p') %></div>
+      <div>Date</div>
+      <div class="border border-black p-[8px]"><%= @date %></div>
       <%= form.hidden_field :user_id, value: current_user.id %>
       <%= form.hidden_field :table_id, value: @table_id %>
       <%= form.hidden_field :time_slot_id, value: @time_slot_id %>
